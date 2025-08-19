@@ -2,11 +2,13 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+from google.colab import drive
+drive.mount('/content/drive')
 
 # ------------------------
 # Función para añadir ruido sal y pimienta
 # ------------------------
-def add_salt_pepper_noise(image, prob=0.02):
+def add_salt_pepper_noise(image, prob=0.1):
     noisy = np.copy(image)
     h, w = image.shape[:2]
     for i in range(h):
@@ -64,10 +66,15 @@ def median_filter(image, ksize=3):
     return output
 
 # ------------------------
-# MAIN
+# MAIN en Colab
 # ------------------------
-# Leer imagen en escala de grises
-image = cv2.imread("imagen_limpia.jpg", cv2.IMREAD_GRAYSCALE)
+ruta_img = "/content/drive/MyDrive/Vision/imagenlimpia.jpg"
+
+# Cargar imagen en escala de grises
+image = cv2.imread(ruta_img, cv2.IMREAD_GRAYSCALE)
+
+if image is None:
+    raise FileNotFoundError("No se pudo cargar la imagen. Verifica que la subiste con el nombre correcto.")
 
 # Añadir ruido
 noisy = add_salt_pepper_noise(image, prob=0.02)
