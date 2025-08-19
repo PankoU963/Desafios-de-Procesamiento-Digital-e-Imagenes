@@ -39,16 +39,14 @@ inicio_estadisticas = time.perf_counter()
 minimo, maximo, media, desviacion = calcular_estadisticas(matriz)
 fin_estadisticas = time.perf_counter()
 
-inicio_guardado = time.perf_counter()
 vector = aplanar_matriz(matriz)
 guardar_vector(vector, ruta_vector)
-fin_guardado = time.perf_counter()
 
 print(f"Dimensión: {filas}x{columnas} = {filas*columnas} píxeles")
 print(f"Mínimo: {minimo}  Máximo: {maximo}  Media: {media:.4f}  Desviación: {desviacion:.4f}")
 print(f"Tiempo generación: {fin_generacion - inicio_generacion:.3f}s")
 print(f"Tiempo estadísticas: {fin_estadisticas - inicio_estadisticas:.3f}s")
-print(f"Tiempo aplanar+guardar: {fin_guardado - inicio_guardado:.3f}s")
+
 print(f"Archivo guardado: {ruta_vector}")
 
 plt.imshow(matriz, cmap="gray", vmin=0, vmax=255)
